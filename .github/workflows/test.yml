@@ -2,6 +2,9 @@ name: 打包React项目
 
 on: push
 
+permissions:
+  contents: write
+
 jobs:
   yarn-build:
     name: yarn-build工作
@@ -14,8 +17,13 @@ jobs:
     - name: 安装yarn
       run: npm install -g yarn
 
-    - name: 安装依赖
-      run: yarn install
+    - name: 安装依赖 项目打包
+      run: |
+        yarn install
+        yarn run build
 
-    - name: 项目打包
-      run: yarn run build
+    - name: 部署项目
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        branch: github-pages
+        folder: build
