@@ -1,0 +1,12 @@
+on: push
+
+jobs:
+  jos1:
+    runs-on: ubuntu-latest
+    steps:
+    - run: pwd
+    - run: ls
+  jos2:
+    runs-on: windows-latest
+    steps:
+    - run: node --version
